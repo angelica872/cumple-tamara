@@ -1,10 +1,11 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Feliz Cumpleaños Tamara</title>
+<title>Feliz Cumpleaños Tamara 🎂</title>
 
 <style>
 
@@ -12,1277 +13,705 @@
    CONFIGURACIÓN GENERAL
 ========================================================= */
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html,
-body{
-    margin:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-body{
-    display:flex;
-    align-items:center;
-    justify-content:center;
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at center, #35155f 0%, #160827 45%, #08030f 100%);
+    color: white;
+}
+
+/* =========================================================
+   PANTALLA INICIAL
+========================================================= */
+
+.pantalla-inicial {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     background:
-        radial-gradient(circle at center,
-        #40351f 0%,
-        #181421 45%,
-        #0b0911 100%);
+        radial-gradient(circle at center, #4a197a, #160827 60%, #07020d);
 
-    font-family:Georgia,serif;
+    transition: opacity 1.5s ease, visibility 1.5s ease;
 }
 
+.pantalla-inicial.ocultar {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.pantalla-inicial h1 {
+    font-size: clamp(2rem, 7vw, 4rem);
+    text-align: center;
+    margin-bottom: 15px;
+
+    color: #ffd86b;
+
+    text-shadow:
+        0 0 10px #ffd86b,
+        0 0 30px #ffb300;
+}
+
+.pantalla-inicial p {
+    font-size: 1.1rem;
+    color: #f5e6ff;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+/* =========================================================
+   BOTÓN
+========================================================= */
+
+#abrirSorpresa {
+    border: none;
+    outline: none;
+
+    padding: 18px 35px;
+
+    border-radius: 50px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    color: #4b2500;
+
+    background:
+        linear-gradient(135deg, #fff09a, #ffd34e, #ffb300);
+
+    box-shadow:
+        0 0 15px rgba(255, 211, 78, 0.7),
+        0 0 40px rgba(255, 179, 0, 0.4);
+
+    cursor: pointer;
+
+    animation: pulso 1.8s infinite;
+
+    transition: transform 0.3s ease;
+}
+
+#abrirSorpresa:hover {
+    transform: scale(1.08);
+}
+
+#abrirSorpresa:active {
+    transform: scale(0.95);
+}
+
+@keyframes pulso {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
 
 /* =========================================================
    ESCENA PRINCIPAL
 ========================================================= */
 
-.scene{
+.escena {
+    position: fixed;
+    inset: 0;
 
-    position:relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    width:min(1200px,100vw);
-    height:min(700px,100vh);
+    padding-top: 7vh;
 
-    overflow:hidden;
+    opacity: 0;
 
-    background:
+    transition: opacity 2s ease;
 
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(255,193,7,.12),
-            transparent 38%
-        ),
-
-        radial-gradient(
-            circle at 15% 80%,
-            rgba(255,170,0,.10),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(255,190,30,.10),
-            transparent 30%
-        ),
-
-        linear-gradient(
-            135deg,
-            #211b27,
-            #0e0b15 55%,
-            #211a27
-        );
-
+    overflow: hidden;
 }
 
+.escena.activa {
+    opacity: 1;
+}
 
 /* =========================================================
-   BRILLO DEL FONDO
+   ESTRELLAS
 ========================================================= */
 
-.scene::before{
+.estrella {
+    position: absolute;
 
-    content:"";
+    width: 4px;
+    height: 4px;
 
-    position:absolute;
-    inset:0;
+    background: white;
+    border-radius: 50%;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,215,100,.20) 1px,
-            transparent 2px
-        );
+    box-shadow: 0 0 10px white;
 
-    background-size:90px 90px;
-
-    opacity:.25;
-
-    animation:
-        backgroundMove 12s linear infinite;
-
+    animation: parpadear 2s infinite alternate;
 }
 
-@keyframes backgroundMove{
+@keyframes parpadear {
 
-    from{
-        transform:translate(0,0);
+    from {
+        opacity: 0.2;
+        transform: scale(0.7);
     }
 
-    to{
-        transform:translate(90px,90px);
+    to {
+        opacity: 1;
+        transform: scale(1.4);
     }
-
 }
-
-
-/* =========================================================
-   MARCO DORADO
-========================================================= */
-
-.frame{
-
-    position:absolute;
-
-    inset:25px;
-
-    border:2px solid rgba(255,215,120,.95);
-
-    box-shadow:
-
-        0 0 5px rgba(255,215,100,.9),
-
-        0 0 20px rgba(255,193,7,.25),
-
-        inset 0 0 20px rgba(255,193,7,.08);
-
-    z-index:50;
-
-    pointer-events:none;
-
-}
-
-
-/* Esquinas decorativas */
-
-.frame::before,
-.frame::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:35px;
-    height:35px;
-
-    border-color:#ffd76a;
-    border-style:solid;
-
-}
-
-.frame::before{
-
-    top:-2px;
-    left:-2px;
-
-    border-width:4px 0 0 4px;
-
-}
-
-.frame::after{
-
-    right:-2px;
-    bottom:-2px;
-
-    border-width:0 4px 4px 0;
-
-}
-
-
-/* =========================================================
-   CONFETI
-========================================================= */
-
-.confetti{
-
-    position:absolute;
-
-    inset:0;
-
-    overflow:hidden;
-
-    z-index:5;
-
-}
-
-.confetti i{
-
-    position:absolute;
-
-    width:6px;
-    height:13px;
-
-    border-radius:2px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #fff5b0,
-            #ffd24a 45%,
-            #b87900
-        );
-
-    box-shadow:
-        0 0 5px rgba(255,200,50,.7);
-
-    opacity:.9;
-
-    animation:
-        fall linear infinite;
-
-}
-
-@keyframes fall{
-
-    0%{
-
-        transform:
-            translateY(-50px)
-            translateX(0)
-            rotate(0deg);
-
-        opacity:0;
-
-    }
-
-    10%{
-        opacity:1;
-    }
-
-    50%{
-
-        transform:
-            translateY(350px)
-            translateX(40px)
-            rotate(360deg);
-
-    }
-
-    100%{
-
-        transform:
-            translateY(750px)
-            translateX(-50px)
-            rotate(720deg);
-
-        opacity:.8;
-
-    }
-
-}
-
-
-/* =========================================================
-   BRILLOS
-========================================================= */
-
-.sparkle{
-
-    position:absolute;
-
-    color:#ffe7a0;
-
-    font-size:18px;
-
-    text-shadow:
-        0 0 8px #ffd45a,
-        0 0 20px #ffb300;
-
-    animation:
-        sparkle 2s ease-in-out infinite;
-
-    z-index:8;
-
-}
-
-.s1{
-    left:15%;
-    top:18%;
-}
-
-.s2{
-    left:46%;
-    top:15%;
-    animation-delay:.6s;
-}
-
-.s3{
-    right:15%;
-    top:38%;
-    animation-delay:1s;
-}
-
-.s4{
-    right:30%;
-    bottom:18%;
-    animation-delay:1.5s;
-}
-
-@keyframes sparkle{
-
-    0%,100%{
-        opacity:.2;
-        transform:scale(.7) rotate(0);
-    }
-
-    50%{
-        opacity:1;
-        transform:scale(1.4) rotate(90deg);
-    }
-
-}
-
-
-/* =========================================================
-   GLOBOS DORADOS
-========================================================= */
-
-.balloon{
-
-    position:absolute;
-
-    width:55px;
-    height:70px;
-
-    border-radius:
-        50% 50% 45% 45%;
-
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            #fff7bd 0%,
-            #ffe26b 15%,
-            #d99a18 45%,
-            #8c5600 100%
-        );
-
-    box-shadow:
-
-        inset -8px -10px 15px rgba(80,40,0,.35),
-
-        inset 8px 5px 12px rgba(255,255,255,.5),
-
-        0 0 15px rgba(255,190,30,.3);
-
-    animation:
-        balloonFloat 4s ease-in-out infinite;
-
-    z-index:10;
-
-}
-
-
-/* brillo del globo */
-
-.balloon::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:11px;
-    height:20px;
-
-    left:12px;
-    top:12px;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.65);
-
-    transform:rotate(-25deg);
-
-}
-
-
-/* nudo */
-
-.balloon::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:50%;
-    bottom:-7px;
-
-    transform:translateX(-50%);
-
-    border-left:6px solid transparent;
-    border-right:6px solid transparent;
-    border-top:9px solid #c48708;
-
-}
-
-
-/* cuerda */
-
-.balloon .string{
-
-    position:absolute;
-
-    left:50%;
-    top:68px;
-
-    width:1px;
-    height:170px;
-
-    background:
-        linear-gradient(
-            rgba(255,215,120,.9),
-            rgba(255,215,120,.1)
-        );
-
-}
-
-
-/* posiciones */
-
-.balloon1{
-
-    left:4%;
-    top:10%;
-
-}
-
-.balloon2{
-
-    right:4%;
-    top:8%;
-
-    animation-delay:-2s;
-
-}
-
-.balloon3{
-
-    right:7%;
-    bottom:5%;
-
-    width:42px;
-    height:55px;
-
-    animation-delay:-1s;
-
-}
-
-@keyframes balloonFloat{
-
-    0%,100%{
-
-        transform:
-            translateY(0)
-            rotate(-3deg);
-
-    }
-
-    50%{
-
-        transform:
-            translateY(-20px)
-            rotate(4deg);
-
-    }
-
-}
-
 
 /* =========================================================
    TORTA
 ========================================================= */
 
-.cake{
+.torta-container {
+    position: relative;
 
-    position:absolute;
+    width: 230px;
+    height: 210px;
 
-    left:7%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 
-    bottom:10%;
+    opacity: 0;
+    transform: translateY(100px) scale(0.5);
 
-    width:300px;
-    height:270px;
-
-    filter:
-        drop-shadow(
-            0 20px 20px rgba(0,0,0,.6)
-        );
-
-    z-index:20;
-
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(.17,.67,.35,1.4);
 }
 
+.torta-container.mostrar {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
 
-/* =========================================================
-   PLATO
-========================================================= */
+/* Plato */
 
-.plate{
+.plato {
+    position: absolute;
+    bottom: 0;
 
-    position:absolute;
+    width: 230px;
+    height: 25px;
 
-    left:50%;
-    bottom:10px;
+    border-radius: 50%;
 
-    width:330px;
-    height:28px;
+    background: linear-gradient(
+        to bottom,
+        #f8f8f8,
+        #cfcfcf
+    );
 
-    transform:translateX(-50%);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+}
 
-    border-radius:50%;
+/* Piso de torta */
+
+.torta {
+    position: absolute;
+
+    bottom: 20px;
+
+    width: 180px;
+    height: 90px;
+
+    border-radius: 12px 12px 25px 25px;
 
     background:
         linear-gradient(
-            #fff9df,
-            #d8c59c
+            to bottom,
+            #ff9ac4,
+            #ff5e9d
         );
 
     box-shadow:
-
-        0 8px 15px rgba(0,0,0,.5),
-
-        inset 0 2px 3px rgba(255,255,255,.9);
-
+        inset 0 -12px 0 rgba(150,0,70,.18),
+        0 10px 20px rgba(0,0,0,.35);
 }
 
+/* Crema */
 
-/* borde del plato */
+.crema {
+    position: absolute;
 
-.plate::after{
+    bottom: 95px;
 
-    content:"";
+    width: 195px;
+    height: 38px;
 
-    position:absolute;
+    background: #fff7fb;
 
-    left:10px;
-    right:10px;
-    top:5px;
-
-    height:15px;
-
-    border-radius:50%;
-
-    border:2px solid #d59b21;
-
-}
-
-
-/* =========================================================
-   BASE DE LA TORTA
-========================================================= */
-
-.base{
-
-    position:absolute;
-
-    left:40px;
-    bottom:35px;
-
-    width:220px;
-    height:25px;
-
-    background:
-        linear-gradient(
-            #7a4a18,
-            #b87820,
-            #6d3d0d
-        );
-
-    border-radius:
-        0 0 12px 12px;
-
-}
-
-
-/* =========================================================
-   CUERPO DE LA TORTA
-========================================================= */
-
-.layer{
-
-    position:absolute;
-
-    left:55px;
-    bottom:58px;
-
-    width:190px;
-    height:105px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #9a6a31,
-            #d2a55d 45%,
-            #8d5c24
-        );
-
-    border-radius:8px;
-
-    border:2px solid #734714;
+    border-radius: 50% 50% 35% 35%;
 
     box-shadow:
-        inset 0 8px 15px rgba(255,255,255,.2);
-
+        0 4px 5px rgba(0,0,0,.15);
 }
 
+/* Decoraciones */
 
-/* =========================================================
-   CREMA
-========================================================= */
+.decoracion {
+    position: absolute;
 
-.cream{
+    bottom: 57px;
 
-    position:absolute;
+    width: 15px;
+    height: 15px;
 
-    left:-6px;
-    top:-18px;
+    border-radius: 50%;
 
-    width:198px;
-    height:40px;
-
-    background:
-        linear-gradient(
-            #fffef0,
-            #f6e7bd
-        );
-
-    border-radius:
-        18px 18px 8px 8px;
+    background: #ffd34e;
 
     box-shadow:
-        0 3px 5px rgba(0,0,0,.25);
-
+        40px 0 #7ce7ff,
+        80px 0 #a9ff8a,
+        120px 0 #c891ff;
 }
-
-
-/* gotas de crema */
-
-.drip{
-
-    position:absolute;
-
-    top:20px;
-
-    width:22px;
-    height:35px;
-
-    background:#fff8df;
-
-    border-radius:
-        0 0 14px 14px;
-
-    box-shadow:
-        0 2px 2px rgba(0,0,0,.15);
-
-}
-
-.drip:nth-child(1){
-    left:20px;
-    height:25px;
-}
-
-.drip:nth-child(2){
-    left:65px;
-    height:42px;
-}
-
-.drip:nth-child(3){
-    left:112px;
-    height:30px;
-}
-
-.drip:nth-child(4){
-    left:158px;
-    height:38px;
-}
-
-
-/* =========================================================
-   DECORACIÓN SOBRE LA TORTA
-========================================================= */
-
-.cream::after{
-
-    content:"✦  ✦  ✦";
-
-    position:absolute;
-
-    left:50%;
-
-    top:-15px;
-
-    transform:translateX(-50%);
-
-    color:#d99b19;
-
-    font-size:18px;
-
-}
-
 
 /* =========================================================
    VELA
 ========================================================= */
 
-.candle{
+.vela {
+    position: absolute;
 
-    position:absolute;
+    bottom: 130px;
 
-    left:50%;
+    width: 18px;
+    height: 55px;
 
-    top:-78px;
-
-    width:12px;
-    height:65px;
-
-    transform:translateX(-50%);
+    border-radius: 5px;
 
     background:
         repeating-linear-gradient(
-            135deg,
-            #fff 0 8px,
-            #e2a92d 8px 14px
+            45deg,
+            #fff,
+            #fff 8px,
+            #ff5c8a 8px,
+            #ff5c8a 16px
         );
 
-    border-radius:5px;
+    opacity: 0;
 
-    box-shadow:
-        0 0 5px rgba(255,255,255,.4);
+    transform: translateY(20px);
 
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
 }
 
+.vela.encendida {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-/* =========================================================
-   LLAMA
-========================================================= */
+/* Llama */
 
-.flame{
+.llama {
+    position: absolute;
 
-    position:absolute;
+    left: 50%;
+    top: -32px;
 
-    left:50%;
+    transform: translateX(-50%) scale(0);
 
-    top:-32px;
+    width: 20px;
+    height: 30px;
 
-    width:24px;
-    height:34px;
-
-    transform:
-        translateX(-50%);
+    border-radius: 50% 50% 50% 50%;
 
     background:
         radial-gradient(
             circle at 50% 70%,
-            #fffbd1 0 20%,
-            #ffd94f 35%,
-            #ff8c00 65%,
-            transparent 72%
+            #fff,
+            #ffd34e 35%,
+            #ff6b00 65%,
+            transparent 70%
         );
 
-    border-radius:
-        60% 40% 60% 40%;
+    filter: drop-shadow(0 0 10px #ffb300);
 
-    filter:
-        drop-shadow(
-            0 0 12px #ffb300
-        );
-
-    animation:
-        flicker .15s infinite alternate;
-
+    transition: transform .5s ease;
 }
 
-@keyframes flicker{
+.vela.encendida .llama {
+    transform: translateX(-50%) scale(1);
 
-    from{
+    animation: llama 0.7s infinite alternate;
+}
 
-        transform:
-            translateX(-50%)
-            rotate(-5deg)
-            scale(.92);
+@keyframes llama {
 
+    from {
+        transform: translateX(-50%) scale(1) rotate(-3deg);
     }
 
-    to{
-
-        transform:
-            translateX(-50%)
-            rotate(6deg)
-            scale(1.08);
-
+    to {
+        transform: translateX(-50%) scale(1.12) rotate(3deg);
     }
-
 }
 
-
 /* =========================================================
-   CONTENEDOR DEL MENSAJE
+   TITULOS
 ========================================================= */
 
-.message{
+.titulo {
+    margin-top: 10px;
 
-    position:absolute;
+    text-align: center;
 
-    z-index:30;
+    opacity: 0;
+    transform: translateY(30px) scale(.8);
 
-    /*
-       El mensaje ocupa la parte derecha
-       y queda completamente dentro del marco.
-    */
-
-    left:35%;
-
-    right:6%;
-
-    top:9%;
-
-    bottom:8%;
-
-    padding:
-        15px 25px 15px 25px;
-
-    text-align:center;
-
-    color:#fffdf3;
-
-    overflow:hidden;
-
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
 }
 
+.titulo.mostrar {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
 
-/* =========================================================
-   TÍTULO
-========================================================= */
+.titulo h1 {
 
-.title{
+    font-size: clamp(2.4rem, 9vw, 5rem);
 
-    margin:0;
-
-    color:#ffd65c;
-
-    font-family:
-        "Brush Script MT",
-        "Segoe Script",
-        cursive;
-
-    font-size:
-        clamp(32px,4.2vw,58px);
-
-    line-height:1;
+    color: #ffd86b;
 
     text-shadow:
+        0 0 10px #ffd86b,
+        0 0 25px #ff9d00,
+        0 0 50px #ff7300;
 
-        0 0 5px #ffd45a,
-
-        0 0 15px rgba(255,190,30,.6),
-
-        0 3px 5px rgba(0,0,0,.5);
-
-    animation:
-        titleAppear 2s ease both;
-
+    animation: brilloTitulo 2s infinite alternate;
 }
 
-@keyframes titleAppear{
+@keyframes brilloTitulo {
 
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(-25px)
-            scale(.9);
-
+    from {
+        filter: brightness(1);
     }
 
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
+    to {
+        filter: brightness(1.3);
     }
-
 }
 
+.nombre {
 
-/* =========================================================
-   NOMBRE
-========================================================= */
+    margin-top: 5px;
 
-.name{
+    font-size: clamp(2rem, 7vw, 4rem);
 
-    display:block;
+    font-weight: bold;
 
-    margin-top:8px;
-
-    font-family:
-        "Brush Script MT",
-        "Segoe Script",
-        cursive;
-
-    font-size:
-        clamp(28px,3.2vw,48px);
-
-    color:#fff9df;
+    color: #ffb6df;
 
     text-shadow:
-        0 0 8px rgba(255,220,100,.5);
+        0 0 10px #ff5db1,
+        0 0 30px #ff1493;
 
-    animation:
-        nameAppear 2s ease both;
+    opacity: 0;
 
-    animation-delay:.5s;
+    transform: scale(.5);
 
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
 }
 
-@keyframes nameAppear{
+.nombre.mostrar {
 
-    from{
+    opacity: 1;
 
-        opacity:0;
-        transform:translateY(20px);
-
-    }
-
-    to{
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
-
+    transform: scale(1);
 }
-
-
-/* línea decorativa */
-
-.decor{
-
-    color:#e9b52b;
-
-    font-size:20px;
-
-    margin:
-        8px 0 12px;
-
-    letter-spacing:8px;
-
-}
-
 
 /* =========================================================
-   MENSAJE INTERNO
+   MENSAJE
 ========================================================= */
 
-.text{
+.mensaje {
 
-    max-width:720px;
+    width: min(90%, 700px);
 
-    margin:
-        0 auto;
+    margin-top: 20px;
 
-    font-family:
-        Georgia,
-        serif;
+    text-align: center;
 
-    font-size:
-        clamp(12px,1.35vw,17px);
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
 
-    line-height:1.45;
+    line-height: 1.7;
 
-    color:
-        rgba(255,255,255,.94);
+    color: #fff5fd;
 
     text-shadow:
-        0 1px 3px rgba(0,0,0,.8);
-
+        0 2px 5px rgba(0,0,0,.5);
 }
 
+.parrafo {
 
-/* cada párrafo */
+    opacity: 0;
 
-.text p{
+    transform: translateY(25px);
 
-    margin:
-        7px 0;
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
 
-    opacity:0;
+    margin-bottom: 12px;
+}
+
+.parrafo.mostrar {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================================================
+   GLOBOS
+========================================================= */
+
+.globo {
+
+    position: absolute;
+
+    bottom: -180px;
+
+    width: 65px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    z-index: 5;
+}
+
+.globo::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -45px;
+    left: 50%;
+
+    width: 2px;
+    height: 50px;
+
+    background: rgba(255,255,255,.6);
+}
+
+.globo::before {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: -8px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 12px;
+    height: 12px;
+
+    background: inherit;
+
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+.globo.subir {
+
+    opacity: 1;
 
     animation:
-        paragraphAppear 1.5s ease forwards;
-
+        subirGlobo 8s linear forwards,
+        moverGlobo 3s ease-in-out infinite alternate;
 }
 
-
-/* aparición progresiva */
-
-.text p:nth-child(1){
-    animation-delay:1.2s;
+.globo1 {
+    left: 5%;
+    background: #ff4f81;
+    animation-delay: .2s;
 }
 
-.text p:nth-child(2){
-    animation-delay:1.8s;
+.globo2 {
+    left: 18%;
+    background: #ffd34e;
+    animation-delay: 1s;
 }
 
-.text p:nth-child(3){
-    animation-delay:2.4s;
+.globo3 {
+    right: 18%;
+    background: #7ce7ff;
+    animation-delay: .5s;
 }
 
-.text p:nth-child(4){
-    animation-delay:3s;
+.globo4 {
+    right: 5%;
+    background: #c891ff;
+    animation-delay: 1.5s;
 }
 
-.text p:nth-child(5){
-    animation-delay:3.6s;
-}
+@keyframes subirGlobo {
 
-@keyframes paragraphAppear{
-
-    from{
-
-        opacity:0;
-
-        transform:
-            translateY(15px);
-
+    from {
+        bottom: -180px;
     }
 
-    to{
-
-        opacity:1;
-
-        transform:
-            translateY(0);
-
+    to {
+        bottom: 120%;
     }
-
 }
 
+@keyframes moverGlobo {
+
+    from {
+        transform: translateX(-15px) rotate(-5deg);
+    }
+
+    to {
+        transform: translateX(15px) rotate(5deg);
+    }
+}
 
 /* =========================================================
-   FRASE FINAL
+   PAPELITOS DORADOS
 ========================================================= */
 
-.final{
+.confeti {
 
-    margin-top:12px;
+    position: absolute;
 
-    color:#ffd85c;
+    top: -20px;
 
-    font-weight:bold;
+    width: 10px;
+    height: 18px;
 
-    font-size:
-        clamp(13px,1.5vw,19px);
+    background: #ffd34e;
 
-    text-shadow:
-        0 0 8px rgba(255,205,70,.5);
+    opacity: 0;
 
+    z-index: 20;
 }
 
+.confeti.caer {
 
-/* =========================================================
-   RESPONSIVE - TABLET
-========================================================= */
+    opacity: 1;
 
-@media(max-width:850px){
-
-    .cake{
-
-        left:2%;
-
-        transform:
-            scale(.75);
-
-        transform-origin:
-            bottom left;
-
-    }
-
-    .message{
-
-        left:27%;
-
-        right:3%;
-
-        top:7%;
-
-        bottom:6%;
-
-        padding:10px;
-
-    }
-
-    .text{
-
-        font-size:12px;
-
-        line-height:1.35;
-
-    }
-
+    animation:
+        caerConfeti linear forwards,
+        girarConfeti .7s infinite linear;
 }
 
+@keyframes caerConfeti {
 
-/* =========================================================
-   RESPONSIVE - CELULAR
-========================================================= */
-
-@media(max-width:600px){
-
-    html,
-    body{
-
-        overflow:hidden;
-
+    to {
+        top: 110%;
     }
-
-    .scene{
-
-        width:100vw;
-        height:100vh;
-
-    }
-
-    .frame{
-
-        inset:10px;
-
-    }
-
-    .cake{
-
-        left:50%;
-
-        bottom:-15px;
-
-        transform:
-            translateX(-50%)
-            scale(.42);
-
-        transform-origin:
-            bottom center;
-
-        opacity:.95;
-
-    }
-
-    .balloon{
-
-        transform:
-            scale(.65);
-
-    }
-
-    .balloon1{
-
-        left:3%;
-        top:5%;
-
-    }
-
-    .balloon2{
-
-        right:3%;
-        top:5%;
-
-    }
-
-    .balloon3{
-
-        display:none;
-
-    }
-
-    .message{
-
-        left:8%;
-
-        right:8%;
-
-        top:7%;
-
-        bottom:23%;
-
-        padding:5px 10px;
-
-        overflow:auto;
-
-        scrollbar-width:none;
-
-    }
-
-    .message::-webkit-scrollbar{
-
-        display:none;
-
-    }
-
-    .title{
-
-        font-size:34px;
-
-    }
-
-    .name{
-
-        font-size:29px;
-
-    }
-
-    .decor{
-
-        font-size:15px;
-
-        margin:5px;
-
-    }
-
-    .text{
-
-        font-size:12px;
-
-        line-height:1.3;
-
-    }
-
-    .text p{
-
-        margin:5px 0;
-
-    }
-
 }
 
+@keyframes girarConfeti {
+
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
 
 /* =========================================================
-   CELULAR PEQUEÑO
+   BOTÓN MÚSICA
 ========================================================= */
 
-@media(max-width:380px){
+.control-musica {
 
-    .title{
+    position: fixed;
 
-        font-size:28px;
+    right: 20px;
+    bottom: 20px;
 
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.15);
+
+    color: white;
+
+    font-size: 22px;
+
+    backdrop-filter: blur(8px);
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transition: opacity 1s ease;
+}
+
+.control-musica.mostrar {
+    opacity: 1;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .escena {
+        padding-top: 3vh;
     }
 
-    .name{
-
-        font-size:25px;
-
+    .torta-container {
+        transform: translateY(100px) scale(.75);
     }
 
-    .text{
-
-        font-size:10.5px;
-
-        line-height:1.25;
-
+    .torta-container.mostrar {
+        transform: translateY(0) scale(.75);
     }
 
-    .message{
+    .mensaje {
+        padding: 0 10px;
+    }
 
-        bottom:20%;
-
+    .globo {
+        width: 48px;
+        height: 62px;
     }
 
 }
@@ -1290,266 +719,468 @@ body{
 </style>
 </head>
 
-
 <body>
 
-<div class="scene" id="scene">
+<!-- =======================================================
+     PANTALLA INICIAL
+======================================================= -->
 
+<div class="pantalla-inicial" id="pantallaInicial">
 
-    <!-- ==============================================
-         MARCO
-    =============================================== -->
+    <h1>🎂 Una sorpresa para ti</h1>
 
-    <div class="frame"></div>
+    <p>
+        Hay algo especial esperándote...
+    </p>
 
-
-    <!-- ==============================================
-         CONFETI
-    =============================================== -->
-
-    <div class="confetti" id="confetti"></div>
-
-
-    <!-- ==============================================
-         BRILLOS
-    =============================================== -->
-
-    <div class="sparkle s1">✦</div>
-    <div class="sparkle s2">✧</div>
-    <div class="sparkle s3">✦</div>
-    <div class="sparkle s4">✧</div>
-
-
-    <!-- ==============================================
-         GLOBOS
-    =============================================== -->
-
-    <div class="balloon balloon1">
-        <div class="string"></div>
-    </div>
-
-    <div class="balloon balloon2">
-        <div class="string"></div>
-    </div>
-
-    <div class="balloon balloon3">
-        <div class="string"></div>
-    </div>
-
-
-    <!-- ==============================================
-         TORTA
-    =============================================== -->
-
-    <div class="cake">
-
-
-        <!-- Plato -->
-
-        <div class="plate"></div>
-
-
-        <!-- Base -->
-
-        <div class="base"></div>
-
-
-        <!-- Torta -->
-
-        <div class="layer">
-
-            <div class="cream">
-
-                <i class="drip"></i>
-                <i class="drip"></i>
-                <i class="drip"></i>
-                <i class="drip"></i>
-
-            </div>
-
-        </div>
-
-
-        <!-- Vela -->
-
-        <div class="candle">
-
-            <div class="flame"></div>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- ==============================================
-         MENSAJE
-    =============================================== -->
-
-    <div class="message">
-
-
-        <h1 class="title">
-            ¡Feliz Cumpleaños!
-        </h1>
-
-
-        <span class="name">
-            ✦ Tamara ✦
-        </span>
-
-
-        <div class="decor">
-            ── ✦ ──
-        </div>
-
-
-        <div class="text">
-
-
-            <p>
-                🌷✨ ¡Feliz cumpleaños, amiga! ✨🌷
-            </p>
-
-
-            <p>
-                Hoy, 1 de octubre, comienza un nuevo capítulo para vos,
-                y deseo de corazón que esté lleno de momentos hermosos,
-                sueños cumplidos y muchísimas razones para sonreír. 💖
-            </p>
-
-
-            <p>
-                Gracias por tu amistad, por cada charla, cada risa,
-                cada momento compartido y por estar presente de una manera
-                tan especial. Hay personas que llegan a nuestra vida
-                y terminan convirtiéndose en parte de ella,
-                y vos sos una de esas personas. 🥰
-            </p>
-
-
-            <p>
-                Ojalá este nuevo año te encuentre rodeada de amor,
-                tranquilidad, salud, felicidad y personas que realmente
-                valoren el hermoso ser que sos. Que nunca te falten
-                motivos para seguir adelante y luchar por todo aquello
-                que soñás. 🌸
-            </p>
-
-
-            <p>
-                Disfrutá muchísimo tu día, porque te merecés todo lo lindo
-                que la vida pueda regalarte. 🎂🎉🥂
-            </p>
-
-
-            <p class="final">
-                💝 ¡Feliz cumpleaños!
-                Que este nuevo año de vida sea maravilloso
-                y que podamos seguir compartiendo muchos momentos más juntas. 🌟
-            </p>
-
-
-        </div>
-
-
-    </div>
-
+    <button id="abrirSorpresa">
+        🎁 ABRIR SORPRESA
+    </button>
 
 </div>
+
+
+<!-- =======================================================
+     ESCENA PRINCIPAL
+======================================================= -->
+
+<div class="escena" id="escena">
+
+    <!-- Estrellas -->
+
+    <div class="estrella" style="top:10%;left:15%;"></div>
+    <div class="estrella" style="top:20%;left:80%;"></div>
+    <div class="estrella" style="top:35%;left:8%;"></div>
+    <div class="estrella" style="top:12%;left:55%;"></div>
+    <div class="estrella" style="top:45%;left:92%;"></div>
+    <div class="estrella" style="top:60%;left:12%;"></div>
+    <div class="estrella" style="top:75%;left:85%;"></div>
+
+
+    <!-- ===================================================
+         TORTA
+    =================================================== -->
+
+    <div class="torta-container" id="torta">
+
+        <div class="plato"></div>
+
+        <div class="torta"></div>
+
+        <div class="crema"></div>
+
+        <div class="decoracion"></div>
+
+        <div class="vela" id="vela">
+
+            <div class="llama"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         GLOBOS
+    =================================================== -->
+
+    <div class="globo globo1"></div>
+    <div class="globo globo2"></div>
+    <div class="globo globo3"></div>
+    <div class="globo globo4"></div>
+
+
+    <!-- ===================================================
+         TITULO
+    =================================================== -->
+
+    <div class="titulo" id="titulo">
+
+        <h1>¡Feliz Cumpleaños!</h1>
+
+    </div>
+
+
+    <!-- ===================================================
+         NOMBRE
+    =================================================== -->
+
+    <div class="nombre" id="nombre">
+
+        Tamara 💖
+
+    </div>
+
+
+    <!-- ===================================================
+         MENSAJE
+    =================================================== -->
+
+    <div class="mensaje">
+
+        <p class="parrafo">
+            Hoy es un día muy especial porque celebramos tu vida,
+            tu alegría y todas esas pequeñas cosas que hacen que seas única.
+        </p>
+
+        <p class="parrafo">
+            Deseo que este nuevo año esté lleno de momentos hermosos,
+            sueños cumplidos, sonrisas y muchas razones para ser feliz.
+        </p>
+
+        <p class="parrafo">
+            Que nunca te falten personas que te quieran,
+            abrazos sinceros y motivos para seguir soñando.
+        </p>
+
+        <p class="parrafo">
+            ✨ ¡Que tengas un cumpleaños maravilloso, Tamara! ✨
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     AUDIO
+======================================================= -->
+
+<audio id="musica" preload="auto">
+
+    <source src="feliz-cumpleanos.mp3" type="audio/mpeg">
+
+    Tu navegador no soporta audio HTML5.
+
+</audio>
+
+
+<!-- =======================================================
+     CONTROL DE MÚSICA
+======================================================= -->
+
+<button class="control-musica" id="controlMusica">
+
+    🔊
+
+</button>
 
 
 <script>
 
 /* =========================================================
-   GENERADOR DE CONFETI DORADO
+   ELEMENTOS
 ========================================================= */
 
-const box = document.getElementById("confetti");
+const boton = document.getElementById("abrirSorpresa");
 
-const pieces = 180;
+const pantallaInicial =
+    document.getElementById("pantallaInicial");
 
+const escena =
+    document.getElementById("escena");
 
-for(let i = 0; i < pieces; i++){
+const torta =
+    document.getElementById("torta");
 
-    const p = document.createElement("i");
+const vela =
+    document.getElementById("vela");
 
+const titulo =
+    document.getElementById("titulo");
 
-    /* posición horizontal */
+const nombre =
+    document.getElementById("nombre");
 
-    p.style.left =
-        Math.random() * 100 + "%";
+const musica =
+    document.getElementById("musica");
 
+const controlMusica =
+    document.getElementById("controlMusica");
 
-    /* posición inicial */
+const parrafos =
+    document.querySelectorAll(".parrafo");
 
-    p.style.top =
-        (-Math.random() * 100) + "px";
-
-
-    /* tamaño */
-
-    p.style.width =
-        (3 + Math.random() * 6) + "px";
-
-    p.style.height =
-        (5 + Math.random() * 13) + "px";
-
-
-    /* animación */
-
-    p.style.animationDuration =
-        (4 + Math.random() * 7) + "s";
+const globos =
+    document.querySelectorAll(".globo");
 
 
-    p.style.animationDelay =
-        (-Math.random() * 8) + "s";
+/* =========================================================
+   BOTÓN ABRIR SORPRESA
+========================================================= */
+
+boton.addEventListener("click", iniciarCumpleanos);
 
 
-    /* rotación inicial */
+/* =========================================================
+   FUNCIÓN PRINCIPAL
+========================================================= */
 
-    p.style.transform =
-        `rotate(${Math.random() * 360}deg)`;
+function iniciarCumpleanos() {
+
+    /*
+       Evitamos que el botón pueda volver
+       a iniciar la animación.
+    */
+
+    boton.disabled = true;
 
 
-    box.appendChild(p);
+    /*
+       Ocultamos la pantalla inicial.
+    */
+
+    pantallaInicial.classList.add("ocultar");
+
+
+    /*
+       Mostramos la escena.
+    */
+
+    escena.classList.add("activa");
+
+
+    /*
+       IMPORTANTE:
+
+       Iniciamos la música desde el clic
+       del usuario para evitar bloqueos
+       de reproducción automática.
+    */
+
+    musica.volume = 0.65;
+
+    musica.play()
+        .then(() => {
+
+            controlMusica.classList.add("mostrar");
+
+        })
+        .catch(error => {
+
+            console.log(
+                "El navegador bloqueó la reproducción:",
+                error
+            );
+
+        });
+
+
+    /*
+       1️⃣ APARECE LA TORTA
+    */
+
+    setTimeout(() => {
+
+        torta.classList.add("mostrar");
+
+    }, 800);
+
+
+    /*
+       2️⃣ SE ENCIENDE LA VELA
+    */
+
+    setTimeout(() => {
+
+        vela.classList.add("encendida");
+
+    }, 2200);
+
+
+    /*
+       3️⃣ COMIENZA EL CONFETI
+    */
+
+    setTimeout(() => {
+
+        crearConfeti();
+
+    }, 3000);
+
+
+    /*
+       4️⃣ ENTRAN LOS GLOBOS
+    */
+
+    setTimeout(() => {
+
+        globos.forEach(globo => {
+
+            globo.classList.add("subir");
+
+        });
+
+    }, 3800);
+
+
+    /*
+       5️⃣ APARECE FELIZ CUMPLEAÑOS
+    */
+
+    setTimeout(() => {
+
+        titulo.classList.add("mostrar");
+
+    }, 4800);
+
+
+    /*
+       6️⃣ APARECE TAMARA
+    */
+
+    setTimeout(() => {
+
+        nombre.classList.add("mostrar");
+
+    }, 6000);
+
+
+    /*
+       7️⃣ APARECE EL MENSAJE
+       PÁRRAFO POR PÁRRAFO
+    */
+
+    setTimeout(() => {
+
+        mostrarMensaje();
+
+    }, 7200);
 
 }
 
 
 /* =========================================================
-   GENERAR ALGUNOS DESTELLOS ALEATORIOS
+   CREAR CONFETI
 ========================================================= */
 
-const scene = document.getElementById("scene");
+function crearConfeti() {
+
+    for (let i = 0; i < 80; i++) {
+
+        const papel = document.createElement("div");
+
+        papel.classList.add("confeti");
 
 
-for(let i = 0; i < 12; i++){
+        /*
+           Posición horizontal aleatoria
+        */
 
-    const star = document.createElement("div");
+        papel.style.left =
+            Math.random() * 100 + "%";
 
-    star.className = "sparkle";
 
-    star.innerHTML = "✦";
+        /*
+           Diferentes tamaños
+        */
 
-    star.style.left =
-        Math.random() * 95 + "%";
+        papel.style.width =
+            (5 + Math.random() * 8) + "px";
 
-    star.style.top =
-        Math.random() * 90 + "%";
+        papel.style.height =
+            (8 + Math.random() * 14) + "px";
 
-    star.style.fontSize =
-        (8 + Math.random() * 10) + "px";
 
-    star.style.animationDelay =
-        Math.random() * 3 + "s";
+        /*
+           Diferentes tonos dorados
+        */
 
-    scene.appendChild(star);
+        const dorados = [
+            "#ffd700",
+            "#ffdf70",
+            "#ffc107",
+            "#fff0a6",
+            "#e6b800"
+        ];
+
+        papel.style.background =
+            dorados[
+                Math.floor(Math.random() * dorados.length)
+            ];
+
+
+        /*
+           Velocidad aleatoria
+        */
+
+        papel.style.animationDuration =
+            (3 + Math.random() * 5) + "s";
+
+
+        /*
+           Retraso aleatorio
+        */
+
+        papel.style.animationDelay =
+            Math.random() * 3 + "s";
+
+
+        papel.classList.add("caer");
+
+
+        document.body.appendChild(papel);
+
+
+        /*
+           Eliminamos el papel después
+           de terminar su animación.
+        */
+
+        setTimeout(() => {
+
+            papel.remove();
+
+        }, 10000);
+
+    }
 
 }
 
-</script>
 
+/* =========================================================
+   MOSTRAR MENSAJE
+========================================================= */
+
+function mostrarMensaje() {
+
+    parrafos.forEach((parrafo, indice) => {
+
+        setTimeout(() => {
+
+            parrafo.classList.add("mostrar");
+
+        }, indice * 1800);
+
+    });
+
+}
+
+
+/* =========================================================
+   CONTROL DE MÚSICA
+========================================================= */
+
+controlMusica.addEventListener("click", () => {
+
+    if (musica.paused) {
+
+        musica.play();
+
+        controlMusica.textContent = "🔊";
+
+    } else {
+
+        musica.pause();
+
+        controlMusica.textContent = "🔇";
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
+```
